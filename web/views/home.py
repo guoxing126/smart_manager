@@ -19,7 +19,6 @@ def blog_index(request, *args, **kwargs):
     article_type_list = models.Article.type_choices
 
     page_str = page_obj.page_str(base_url)
-    print(article_type_list)
     context_data = {
         'article_list':article_list,
         'article_type_list':article_type_list,
