@@ -14,7 +14,7 @@ class UserInfo(models.Model):
     password = models.CharField(verbose_name='密码', max_length=64)
     nickname = models.CharField(verbose_name='昵称', max_length=32)
     email = models.EmailField(verbose_name='邮箱', unique=True)
-    avatar = models.ImageField(verbose_name='头像')
+    avatar = models.ImageField(verbose_name='头像',null=True)
     create_time = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
     fans = models.ManyToManyField(verbose_name='粉丝们',
                                   to='UserInfo',
