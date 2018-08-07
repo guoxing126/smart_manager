@@ -3,7 +3,16 @@ from repository import models
 from utils.pagination import Pagination
 from django.urls import reverse
 from web.forms.account import RegisterForm, LoginForm
+from io import BytesIO
+from utils.check_code import create_validate_code
 
+def check_code(request):
+    stream = BytesIO()
+    img, code = create_validate_code()
+    img.save(stream, 'PNG')
+    request.session['CheckCode'] = code
+    # print(code)
+    return HttpResponse(stream.getvalue())
 
 def register(request, *args, **kwargs):
     if request.method == 'GET':
@@ -36,7 +45,9 @@ def login(request, *args, **kwargs):
                        'avatar',
                        'blog__nid',
                        'blog__site').first()
+            # print(user_info)
             request.session['user_info'] = user_info
+            print(request.session['user_info'])
             # if form.cleaned_data.get('rmb'):
             #     request.session.set_expiry(60 * 60 * 24 * 30)
             return redirect('/')
@@ -45,7 +56,8 @@ def login(request, *args, **kwargs):
             return render(request, 'login.html', {'log_form': log_form})
 
 
-def loginout(request, *args, **kwargs):
+def logout(request, *args, **kwargs):
     request.session.clear()
-    print(request.session)
+    # del request.session['user_info']
+    # request.session.flush()
     return redirect('/')

@@ -26,7 +26,6 @@ def blog_index(request, *args, **kwargs):
         'page_obj':page_obj,
         'page_str':page_str,
     }
-
     return render(request,'index.html', context_data)
 
 
