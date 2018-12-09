@@ -4,38 +4,68 @@ from utils.pagination import Pagination
 from django.urls import reverse
 
 
-def blog_index(request, *args, **kwargs):
-    if kwargs:
-        article_type_id = int(kwargs['article_type_id'])
-        base_url = reverse('index',kwargs=kwargs)
-    else:
-        article_type_id = None
-        base_url = '/'
 
-    data_count = models.Article.objects.filter(**kwargs).count()
-    page_obj = Pagination(request.GET.get('p'),data_count=data_count)
-
-    article_list = models.Article.objects.filter(**kwargs)[page_obj.start:page_obj.end]
-    article_type_list = models.Article.type_choices
-
-    page_str = page_obj.page_str(base_url)
-    context_data = {
-        'article_list':article_list,
-        'article_type_list':article_type_list,
-        'article_type_id':article_type_id,
-        'page_obj':page_obj,
-        'page_str':page_str,
-    }
-    return render(request,'index.html', context_data)
+def device_overview(request, *args, **kwargs):
+    '''
+    管理概况
+    :param request:
+    :param args:
+    :param kwargs:
+    :return:
+    '''
+    return render(request, 'home.html')
 
 
-def blog_home(request, *args, **kwargs):
+def network_list(request, *args, **kwargs):
+    '''
+    网络设备列表
+    :param request:
+    :param args:
+    :param kwargs:
+    :return:
+    '''
     pass
 
 
-def blog_filter(request, *args, **kwargs):
+def server_list(request, *args, **kwargs):
+    '''
+    服务器列表
+    :param request:
+    :param args:
+    :param kwargs:
+    :return:
+    '''
     pass
 
 
-def blog_detail(request, *args, **kwargs):
+def device_manage(request, *args, **kwargs):
+    '''
+    设备管理
+    :param request:
+    :param args:
+    :param kwargs:
+    :return:
+    '''
+    pass
+
+
+def device_alert(request, *args, **kwargs):
+    '''
+    设备告警
+    :param request:
+    :param args:
+    :param kwargs:
+    :return:
+    '''
+    pass
+
+
+def system_settings(request, *args, **kwargs):
+    '''
+    系统设置
+    :param request:
+    :param args:
+    :param kwargs:
+    :return:
+    '''
     pass
