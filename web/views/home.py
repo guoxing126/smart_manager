@@ -6,15 +6,6 @@ from repository import models
 from utils.pagination import Pagination
 from django.urls import reverse
 
-sidebar_dcit = {
-    'device_overview':'管理概况',
-    'network_list':'网络设备列表',
-    'server_list': '服务器列表',
-    'device_manage': '设备管理',
-    'device_alert': '设备告警',
-    'system_settings': '系统设置',
-}
-
 
 def device_overview(request, *args, **kwargs):
     '''
@@ -24,12 +15,9 @@ def device_overview(request, *args, **kwargs):
     :param kwargs:
     :return:
     '''
-    fname = inspect.stack()[0][3]
-    sidebar_name = sidebar_dcit.get(fname)
+    side_name = inspect.stack()[0][3]
     context_data ={
-        'fname':fname,
-        'sidebar_name':sidebar_name,
-        'sidebar_dcit':sidebar_dcit,
+        'side_name':side_name,
     }
     return render(request, 'home.html', context_data)
 
@@ -42,12 +30,9 @@ def network_list(request, *args, **kwargs):
     :param kwargs:
     :return:
     '''
-    fname = inspect.stack()[0][3]
-    sidebar_name = sidebar_dcit.get(fname)
+    side_name = inspect.stack()[0][3]
     context_data = {
-        'fname': fname,
-        'sidebar_name': sidebar_name,
-        'sidebar_dcit': sidebar_dcit,
+        'side_name': side_name,
     }
     return render(request, 'network_list.html', context_data)
 
@@ -60,12 +45,9 @@ def server_list(request, *args, **kwargs):
     :param kwargs:
     :return:
     '''
-    fname = inspect.stack()[0][3]
-    sidebar_name = sidebar_dcit.get(fname)
+    side_name = inspect.stack()[0][3]
     context_data = {
-        'fname': fname,
-        'sidebar_name': sidebar_name,
-        'sidebar_dcit': sidebar_dcit,
+        'side_name': side_name,
     }
     return render(request, 'server_list.html', context_data)
 
@@ -78,12 +60,9 @@ def device_manage(request, *args, **kwargs):
     :param kwargs:
     :return:
     '''
-    fname = inspect.stack()[0][3]
-    sidebar_name = sidebar_dcit.get(fname)
+    side_name = inspect.stack()[0][3]
     context_data = {
-        'fname': fname,
-        'sidebar_name': sidebar_name,
-        'sidebar_dcit': sidebar_dcit,
+        'side_name': side_name,
     }
     return render(request, 'device_manage.html', context_data)
 
@@ -96,12 +75,9 @@ def device_alert(request, *args, **kwargs):
     :param kwargs:
     :return:
     '''
-    fname = inspect.stack()[0][3]
-    sidebar_name = sidebar_dcit.get(fname)
+    side_name = inspect.stack()[0][3]
     context_data = {
-        'fname': fname,
-        'sidebar_name': sidebar_name,
-        'sidebar_dcit': sidebar_dcit,
+        'side_name': side_name,
     }
     return render(request, 'device_alert.html', context_data)
 
@@ -114,11 +90,8 @@ def system_settings(request, *args, **kwargs):
     :param kwargs:
     :return:
     '''
-    fname = inspect.stack()[0][3]
-    sidebar_name = sidebar_dcit.get(fname)
+    side_name = inspect.stack()[0][3]
     context_data = {
-        'fname': fname,
-        'sidebar_name': sidebar_name,
-        'sidebar_dcit': sidebar_dcit,
+        'side_name': side_name,
     }
     return render(request, 'system_settings.html', context_data)

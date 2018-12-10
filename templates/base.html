@@ -23,11 +23,16 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">主页</a></li>
-                <li><a href="#">个人设置</a></li>
-                <li><a href="#">登陆</a></li>
-                <li><a href="#">注册</a></li>
-                <li><a href="#">帮助</a></li>
+                <li><a href="/">主页</a></li>
+                {% if request.session.user_info %}
+                    <li><a href="#">个人设置</a></li>
+                    <li><a href="/">{{ request.session.user_info.username }},欢迎使用!</a></li>
+                    <li><a href="logout.html">退出</a></li>
+                {% else %}
+                    <li><a href="login.html">登陆</a></li>
+                    <li><a href="register.html">注册</a></li>
+                {% endif %}
+                {#                <li><a href="#">帮助</a></li>#}
             </ul>
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="搜索">
@@ -41,12 +46,37 @@
 
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                {% for sd,sd_value in sidebar_dcit.items %}
-                    <li {% if sd == fname %}
-                        class="active"
-                    {% endif %}><a href="{{ sd }}.html">{{ sd_value }}</a></li>
-                {% endfor %}
+                {% if side_name == 'device_overview' %}
+                    <li class="active">{% else %}
+                    <li>{% endif %}
+                <a href="home.html">管理概况</a>
+                </li>
 
+                {% if side_name == 'network_list' %}
+                    <li class="active">{% else %}
+                    <li>{% endif %}
+                <a href="network_list.html">网络设备列表</a>
+
+                </li>{% if side_name == 'server_list' %}
+                <li class="active">{% else %}
+                <li>{% endif %}
+                <a href="server_list.html">服务器列表</a>
+
+                </li>{% if side_name == 'device_manage' %}
+                <li class="active">{% else %}
+                <li>{% endif %}
+                <a href="device_manage.html">设备管理</a>
+
+                </li>{% if side_name == 'device_alert' %}
+                <li class="active">{% else %}
+                <li>{% endif %}
+                <a href="device_alert.html">设备告警</a>
+
+                </li>{% if side_name == 'system_settings' %}
+                <li class="active">{% else %}
+                <li>{% endif %}
+                <a href="system_settings.html">系统设置</a>
+                </li>
             </ul>
         </div>
 

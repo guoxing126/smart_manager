@@ -114,4 +114,5 @@ ENV/
 .python-version
 .module-cache
 .vscode
+db.sqlite3
 

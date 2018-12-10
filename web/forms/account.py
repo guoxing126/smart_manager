@@ -65,6 +65,13 @@ class RegisterForm(BaseForm, django_forms.Form):
                         'min_length': "密码长度不能小于8个字符",
                         'max_length': "密码长度不能大于32个字符"}
     )
+    email = django_fields.EmailField(
+        required=True,
+        error_messages={
+            'required':'邮箱不能为空',
+        }
+    )
+    nickname = django_fields.CharField()
 
     def clean_username(self):
         post_username = self.cleaned_data['username']
