@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-from src.client import AutoAgent
-from src.client import AutoSSH
-from src.client import AutoSalt
-from config import settings
+from ..src.client import AutoAgent
+from ..src.client import AutoSSH
+from ..src.client import AutoSalt
+from ..config import settings
 
 
 def client():
